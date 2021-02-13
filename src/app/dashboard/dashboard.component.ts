@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IHero } from '../interfaces/IHero';
 import { HeroService } from '../services/hero.service';
-import { MessageService } from '../services/message.service';
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class HeroesComponent implements OnInit {
-  heroes: IHero[];
+export class DashboardComponent implements OnInit {
+  heroes: IHero[] = [];
 
   constructor(private heroService: HeroService) { }
 
@@ -19,6 +18,6 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes);
+      .subscribe(heroes => this.heroes = heroes.slice(0, 4));
   }
 }
